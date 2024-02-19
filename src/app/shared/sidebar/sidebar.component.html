@@ -1,0 +1,48 @@
+<aside class="left-sidebar animated fadeIn">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+
+                <li class="user-profile">
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <img src="assets/images/clickstore-logo.png" alt="user" /><span class="hide-menu">{{ usuario.nombre }}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li *ngIf="permisosModulo.visualizar"><a routerLinkActive="active" routerLink="/dashboard/perfil">Mi Perfil</a></li>
+                        <li><a (click)="closeNavbar()" routerLinkActive="active" routerLink="/dashboard/account-settings">Configuración</a></li>
+                        <li><a class="pointer" (click)="logout()">Salida</a></li>
+                    </ul>
+                </li>
+                <li class="nav-devider"></li>
+
+                <li class="nav-small-cap">BIENVENIDOS</li>
+
+                <li *ngFor="let item of menu">
+                    
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                        <i [class]="item.icono"></i>
+                        <span class="hide-menu">{{ item.titulo }}
+                            <!-- <span class="label label-rouded label-themecolor pull-right">{{ item.submenu.length }}</span> -->
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+
+                        <li *ngFor="let sub of item.submenu">
+
+                            <a (click)="closeNavbar()"
+                               [routerLink]="sub.url"
+                               [routerLinkActive]="[ 'active' ]"
+                               [routerLinkActiveOptions]="{ exact: true }">{{ sub.titulo }}</a>
+
+                        </li>
+                      
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

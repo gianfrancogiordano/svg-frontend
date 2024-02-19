@@ -1,0 +1,67 @@
+{
+    "short_name": "ClickStore",
+    "name": "ClickStore - Market Digital",
+    "start_url": "/",
+    "background_color": "#1976d2",
+    "theme_color": "#1976d2",
+    "display": "standalone",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "assets/icons/20.png",
+            "type": "image/png",
+            "sizes": "20x20"
+        },
+        {
+            "src": "assets/icons/29.png",
+            "type": "image/png",
+            "sizes": "29x29"
+        },
+        {
+            "src": "assets/icons/40.png",
+            "type": "image/png",
+            "sizes": "40x40"
+        },
+        {
+            "src": "assets/icons/60.png",
+            "type": "image/png",
+            "sizes": "60x60"
+        },
+        {
+            "src": "assets/icons/80.png",
+            "type": "image/png",
+            "sizes": "80x80"
+        },
+        {
+            "src": "assets/icons/100.png",
+            "type": "image/png",
+            "sizes": "100x100"
+        },
+        {
+            "src": "assets/icons/180.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
+        {
+            "src": "assets/icons/192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "assets/icons/384.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        },
+        {
+            "src": "assets/icons/512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "assets/icons/1024.png",
+            "type": "image/png",
+            "sizes": "1024x1024"
+        }
+    ]
+
+}

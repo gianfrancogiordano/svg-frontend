@@ -1,0 +1,32 @@
+
+<div class="form-group">
+    <label for="exampleInputuname">{{ title }} <small class="text-danger">*Requerido</small></label>
+
+    <div class="edit-bar">
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('bold');"><i class="fas fa-bold"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('italic');"><i class="fas fa-italic"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('underline');"><i class="fas fa-underline"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('strikethrough');"><i class="fas fa-strikethrough"></i></button>
+
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-3" onclick="document.execCommand('subscript');"><i class="fas fa-subscript"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('superscript');"><i class="fas fa-superscript"></i></button>
+
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-3" onclick="document.execCommand('justifyLeft');"><i class="fas fa-align-left"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('justifyCenter');"><i class="fas fa-align-center"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('justifyRight');"><i class="fas fa-align-right"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('justifyFull');"><i class="fas fa-align-justify"></i></button>
+
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-3" onclick="document.execCommand('insertUnorderedList');"><i class="fas fa-list-ul"></i></button>
+        <button type="button" class="btn btn-secondary btn-sm mt-1 ml-1" onclick="document.execCommand('insertOrderedList');"><i class="fas fa-list-ol"></i></button>
+
+    </div>
+    <div class="input-group">
+
+        <div #editor
+            [attr.spellcheck]="false"
+            contenteditable="true"
+            class="content-editable"
+            (input)="onContentChange($event.target)"></div>
+
+    </div>
+</div>

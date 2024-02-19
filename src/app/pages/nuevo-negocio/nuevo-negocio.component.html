@@ -1,0 +1,191 @@
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Registro de Nuevo Negocio</h4>
+                <h6 class="card-subtitle">Formulario de registro de nuevos negocios</h6>
+
+                <form   [formGroup]="formNegocio"
+                        (ngSubmit)="nuevoNegocio()"
+                        class="form p-t-20"
+                        autocomplete="off">
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('razonSocial')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('razonSocial')}" for="exampleInputuname">Razón Social</label>
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><i class="fas fa-industry"></i></div>
+
+                            <input type="text" class="form-control" id="razonSocial" (keyup)="generarIdentificador()"
+                                [ngClass]="{'form-control-danger': campoNoValido('razonSocial')}"
+                                formControlName="razonSocial">
+                        </div>
+                        <div *ngIf="campoNoValido('razonSocial')" class="form-control-feedback text-danger">La Razón Social es
+                            requerida</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('documento')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('documento')}" for="exampleInputuname">Documento</label>
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><i class="fas fa-id-card"></i></div>
+
+                            <input type="text" class="form-control" id="documento"
+                                [ngClass]="{'form-control-danger': campoNoValido('documento')}"
+                                formControlName="documento">
+                        </div>
+                        <div *ngIf="campoNoValido('documento')" class="form-control-feedback text-danger">El documento es requerido</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('representante')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('representante')}" for="exampleInputuname">Representante</label>
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><i class="fas fa-user"></i></div>
+
+                            <input type="text" class="form-control" id="representante"
+                                [ngClass]="{'form-control-danger': campoNoValido('representante')}"
+                                formControlName="representante">
+                        </div>
+                        <div *ngIf="campoNoValido('representante')" class="form-control-feedback text-danger">El representante es requerido</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('direccion')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('direccion')}" for="exampleInputuname">Dirección</label>
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><i class="fas fa-map-marked-alt"></i></div>
+
+                            <input type="text" class="form-control" id="direccion"
+                                [ngClass]="{'form-control-danger': campoNoValido('direccion')}"
+                                formControlName="direccion">
+                        </div>
+                        <div *ngIf="campoNoValido('direccion')" class="form-control-feedback text-danger">El direccion es requerido</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('telefono')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('telefono')}" for="exampleInputuname">Teléfono</label>
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><i class="fas fa-mobile-alt"></i></div>
+
+                            <input type="text" class="form-control" id="telefono"
+                                [ngClass]="{'form-control-danger': campoNoValido('telefono')}"
+                                formControlName="telefono">
+                        </div>
+                        <div *ngIf="campoNoValido('telefono')" class="form-control-feedback text-danger">El telefono es requerido</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('email')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('email')}" for="pwd2">E-mail</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-envelope"></i></div>
+
+                            <input type="email" class="form-control" id="email"
+                                [ngClass]="{'form-control-danger': campoNoValido('email')}"
+                                formControlName="email">
+
+                        </div>
+                        <div *ngIf="campoNoValido('email')" class="form-control-feedback text-danger">El E-mail es
+                            requerido</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('identnegocio')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('identnegocio')}" for="identnegocio">Identificador Único</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-fingerprint"></i></div>
+
+                            <input type="identnegocio" class="form-control" id="identnegocio"
+                                [ngClass]="{'form-control-danger': campoNoValido('identnegocio')}"
+                                formControlName="identnegocio">
+
+                        </div>
+                        <div *ngIf="campoNoValido('identnegocio')" class="form-control-feedback text-danger">El identificador es
+                            requerido o ya está en uso</div>
+
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('user')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('user')}"
+                            for="exampleInputEmail1">Usuario Administrativo</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-user-shield"></i></div>
+
+                            <input type="text" class="form-control" id="user"
+                                [ngClass]="{'form-control-danger': campoNoValido('user')}"
+                                formControlName="user">
+                        </div>
+                        <div *ngIf="campoNoValido('user')" class="form-control-feedback text-danger">El usuario es
+                            requerido o ya se encuentra en uso</div>
+                    </div>
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('password')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('password')}" for="pwd1">Clave</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-key"></i></div>
+
+                            <input type="password" class="form-control" id="password"
+                                [ngClass]="{'form-control-danger': campoNoValido('password')}" formControlName="password">
+
+                        </div>
+                        <div *ngIf="campoNoValido('password')" class="form-control-feedback text-danger">La contraseña
+                            es requerida</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('repassword')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('repassword')}" for="pwd2">Confirmar
+                            Clave</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-key"></i></div>
+
+                            <input type="password" class="form-control" id="repassword"
+                                [ngClass]="{'form-control-danger': campoNoValido('repassword')}" formControlName="repassword">
+
+                        </div>
+                        <div *ngIf="campoNoValido('repassword')" class="form-control-feedback text-danger">Las
+                            contraseñas deben ser iguales</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('plan')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('plan')}" for="pwd2">Plan Clickstore</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fas fa-filter"></i></div>
+                            <select id="plan" formControlName="plan" class="form-control">
+                                <option value="">--</option>
+                                <option value="PLAN 1 MES">PLAN 1 MES</option>
+                                <option value="PLAN 3 MESES">PLAN 3 MESES</option>
+                                <option value="PLAN 6 MESES">PLAN 6 MESES</option>
+                                <option value="PLAN 12 MESES">PLAN 12 MESES</option>
+                                <option value="PLAN 24 MESES">PLAN 24 MESES</option>
+                            </select>
+                        </div>
+                        <div *ngIf="campoNoValido('plan')" class="form-control-feedback text-danger">El plan es
+                            requerido</div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-danger': campoNoValido('metodoPago')}">
+                        <label [ngClass]="{'text-danger': campoNoValido('metodoPago')}" for="exampleInputuname">Método de Pago</label>
+                        <div class="input-group">
+
+                            <div class="input-group-addon"><i class="fas fa-cash-register"></i></div>
+
+                            <input type="text" class="form-control" id="metodoPago"
+                                [ngClass]="{'form-control-danger': campoNoValido('metodoPago')}"
+                                formControlName="metodoPago">
+                        </div>
+                        <div *ngIf="campoNoValido('metodoPago')" class="form-control-feedback text-danger">El Método de pago es requerido</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10"><i
+                            class="fa fa-save"></i> Crear Nuevo Negocio</button>
+
+                    <!-- <button *ngIf="formSubmitted" class="btn btn-info waves-effect waves-light m-r-10" disabled><i
+                            class="fa fa-circle-o-notch fa-spin fa-fw"></i> Crear Nuevo Negocio</button> -->
+
+                    <a routerLink="/dashboard/usuarios" class="btn btn-inverse waves-effect waves-light">Atrás</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>

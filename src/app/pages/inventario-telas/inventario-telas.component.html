@@ -1,0 +1,144 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title"><span class="lstick"></span>Ingresar Telas</h4>
+
+                <form class="form p-t-20" [formGroup]="formTela">                    
+                    <div class="row">
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Descripción</label>
+                            <input type="text" formControlName="descripcion" class="form-control">
+                        </div>
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">SKU Tela</label>
+                            <input type="text" formControlName="sku" class="form-control">
+                        </div>
+    
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Color</label>
+                            <input type="text" formControlName="color" class="form-control">
+                        </div>
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Ancho</label>
+                            <input type="number" formControlName="ancho" class="form-control">
+                        </div>
+    
+                    </div>
+                    <div class="row mt-3">
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Unidad de medida</label>
+                            <select formControlName="unidadMedida" class="form-control">
+                                <option value="KG">KG.</option>
+                                <option value="MTS">Mts.</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Promedio</label>
+                            <input type="number" (keyup)="createCantidad()" formControlName="promedio" value="0" class="form-control">
+                        </div>
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">KG</label>
+                            <input type="number" (keyup)="createCantidad()" value="0" formControlName="kg" class="form-control">
+                        </div>
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Cantidad - Mts</label>
+                            <input type="number" formControlName="cantidadIngresada" class="form-control" readonly>
+                        </div>
+    
+                    </div>
+                    <div class="row mt-3">
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">Nombre Proveedor</label>
+                            <input type="text" formControlName="proveedor" class="form-control">
+                        </div>
+    
+                        <div class="col-12 col-md-3">
+                            <label for="">SKU Proveedor</label>
+                            <input type="text" formControlName="skuproveedor" class="form-control">
+                        </div>
+    
+                        <div class="col-12 col-md-6">
+                            <button type="button" (click)="createTela()" class="btn btn-success m-1 mt-4"><i class="fa fa-save"></i> Guardar</button>
+                            <button type="button" (click)="cleanForm()" class="btn btn-danger m-1 mt-4"><i class="fa fa-trash"></i> Limpiar</button>
+                        </div>
+    
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive animated fadeIn fast">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Descripción</th>
+                                <th>Color</th>
+                                <th>Ancho</th>
+                                <th>Promedio</th>
+                                <th>KG</th>
+                                <th>Unidad Medida</th>
+                                <th>Proveedor</th>
+                                <th>SKU Proveedor</th>
+                                <th>Cantidad Ingresada</th>
+                                <th>Cantidad Restante</th>
+                                <th>Usuario</th>
+                                <th>Fecha Creación</th>
+                                <th>Ultima Actualización</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let tela of tableData.data">
+                                <td>{{ tela.sku }}</td>
+                                <td>{{ tela.descripcion }}</td>
+                                <td>{{ tela.color }}</td>
+                                <td>{{ tela.ancho }}</td>
+                                <td>{{ tela.promedio }}</td>
+                                <td>{{ tela.kg }}</td>
+                                <td>{{ tela.unidadMedida }}</td>
+                                <td>{{ tela.proveedor }}</td>
+                                <td>{{ tela.skuproveedor }}</td>
+                                <td class="font-weight-bold text-black">{{ tela.cantidadIngresada }} mts</td>
+                                <td class="font-weight-bold text-back">{{ tela.cantidad }} mts</td>
+                                <td>{{ tela.usuario.nombre }}</td>
+                                <td>{{ tela.createdAt | date: 'short' }}</td>
+                                <td>{{ tela.updatedAt | date: 'short' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="!cargando" class="row small animated fadeIn fast">
+                    <div class="col-12 col-md-6">
+                        <div class="dataTables_info m-1" id="example23_info" role="status" aria-live="polite">
+                            Mostrando {{ tableData.data.length }}
+                            registros de un total de {{ tableData.conteo }} registros
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

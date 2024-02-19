@@ -1,0 +1,22 @@
+.info-negocio {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.font-count {
+    font-weight: bold;
+}
+
+.logo-info {
+    max-width: 100%;
+    height: auto;
+    max-height: 350px;
+}
+
+.img-cat {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 10%);
+    border: 1px solid rgba(0, 0, 0, .125);
+}

@@ -1,0 +1,450 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-12 col-md-6">
+                        <h4 class="card-title"><span class="lstick"></span>{{ negocio.nombre_comercial }}</h4>
+                        <h6 class="card-subtitle">Detalle del negocio</h6>
+                    </div>
+
+                    <div class="col-12 col-md-6 text-right">
+                        <button type="button" (click)="deleteMarket()" class="btn btn-danger"><i
+                                class="fa fa-trash"></i> Eliminar Market</button>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 col-md-4 text-center">
+                        <img class="logo-info" [src]="negocio.logo | imagen:'logo'" alt="">
+                    </div>
+                    <div class="col-12 col-md-8">
+
+                        <div class="info-negocio mt-3">
+                            <span># id: {{ negocio._id }}</span>
+                            <span>Nombre Comercial: {{ negocio.nombre_comercial }}</span>
+                            <span>Eslogan: {{ negocio.eslogan }}</span>
+                            <span>Documento: {{ negocio.documento }}</span>
+                            <span>Representante: {{ negocio.representante }}</span>
+                            <span>Identnegocio: {{ negocio.identnegocio }}</span>
+                            <span>Moneda: {{ negocio.moneda }}</span>
+                            <span>País: {{ negocio.pais }}</span>
+                            <span>Cantidad Sedes: {{ negocio.cantidadsedes }}</span>
+                            <span>Dirección: {{ negocio.direccion }}</span>
+                            <span>Email: {{ negocio.email }}</span>
+                            <span>Mensaje Inicial: 
+
+                                <button (click)="copyWelcomeMessage()" type="button" class="btn btn-success m-1">
+                                    <i class="fa fa-link"></i> <span class="hidden-xs-down"> Copiar Mensaje</span></button>
+
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row mt-5 text-center">
+                    <div class="col-12 col-md-6">
+                        <span>Cantidad de Categorias: <span class="font-count">{{ categoriasCount }}</span></span>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <span>Cantidad de Productos: <span class="font-count">{{ productosCount }}</span></span>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 col-md-6 mt-5">
+                        <h4 class="card-title"><span class="lstick"></span>Sedes</h4>
+                    </div>
+
+                    <div class="col-12 small mt-3">
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Descripcion</th>
+                                        <th>Whatsapp</th>
+                                        <th>Encargado</th>
+                                        <th class="text-center">Ir a la tienda</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of negocio.sedes">
+                                        <td scope="row">{{ item.descripcion }}</td>
+                                        <td>{{ item.wsnumber }}</td>
+                                        <td>{{ item.encargado.nombre }}</td>
+                                        <td class="text-center">
+
+                                            <button (click)="shareLink(item.wsnumber, 'detal')" type="button"
+                                                class="btn btn-primary m-1"><i class="fas fa-share-alt"></i> <span
+                                                    class="hidden-xs-down"> Detal</span></button>
+
+                                            <button (click)="shareLink(item.wsnumber, 'mayorista')" type="button"
+                                                class="btn btn-info m-1"><i class="fas fa-share-alt"></i> <span
+                                                    class="hidden-xs-down"> Mayor</span></button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 col-md-6 mt-5">
+                        <h4 class="card-title"><span class="lstick"></span>Usuarios</h4>
+                    </div>
+
+                    <div class="col-12 small mt-3">
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Usuario</th>
+                                        <th>Email</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of usuarios">
+                                        <td scope="row">{{ item.nombre }}</td>
+                                        <td scope="row">{{ item.user }}</td>
+                                        <td scope="row">{{ item.email }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-primary"><i
+                                                    class="fas fa-unlock-alt"></i> Cambiar Contraseña</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 col-md-6 mt-5">
+                        <h4 class="card-title"><span class="lstick"></span>Suscripciones</h4>
+                    </div>
+
+                    <div class="col-12 small mt-3">
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Estado</th>
+                                        <th>Fecha Inicial</th>
+                                        <th>Fecha Fin</th>
+                                        <th>Método de pago</th>
+                                        <th>Monto</th>
+                                        <th>Plan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of suscripciones">
+                                        <td scope="row">
+                                            <span *ngIf="item.estado"><i class="fa fa-check text-success"></i></span>
+                                            <span *ngIf="!item.estado"><i class="fa fa-times text-danger"></i></span>
+                                        </td>
+                                        <td>{{ item.inicio_suscripcion | date:'dd/MM/YYYY' }}</td>
+                                        <td>{{ item.fin_suscripcion | date:'dd/MM/YYYY' }}</td>
+                                        <td>{{ item.metodo_pago }}</td>
+                                        <td>{{ item.monto | currency : '$' : 'symbol' : '1.0' }}</td>
+                                        <td>{{ item.plan }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h4 class="card-title"><span class="lstick"></span>Analytics de la tienda</h4>
+                        <h6 class="card-subtitle">Detalle de las métricas de la tienda</h6>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 col-md-6">
+
+                        <div class="form-group">
+                            <label for="desdeInput">Desde</label>
+                            <input [(ngModel)]="currentMonthFirst" (change)="getAnalytics()" type="date"
+                                class="form-control-date" id="desdeInput">
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label for="desde-control">Hasta</label>
+                            <input class="form-control-date" (change)="getAnalytics()" type="date"
+                                [(ngModel)]="currentMonthLast">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="stats">
+                                        <h1 class="text-white">{{ totalSales | currency : '$' : 'symbol' : '1.0' }}</h1>
+                                        <h6 class="text-white">Monto Pedidos Totales</h6>
+                                    </div>
+                                    <div class="stats-icon text-right ml-auto"><i class="fas fa-hand-holding-usd display-5 op-3 text-dark"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="stats">
+                                        <h1 class="text-white">{{ averageOrderValue | currency : '$' : 'symbol' : '1.0' }}</h1>
+                                        <h6 class="text-white">Ticket promedio de los pedidos</h6>
+                                    </div>
+                                    <div class="stats-icon text-right ml-auto"><i class="fas fa-receipt display-5 op-3 text-dark"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 col-xlg-4">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="stats">
+                                        <h1 class="text-white">{{ conversionRate | number: '1.0-1' }}%</h1>
+                                        <h6 class="text-white">Tasa de conversión</h6>
+                                    </div>
+                                    <div class="stats-icon text-right ml-auto"><i class="fas fa-funnel-dollar display-5 op-3 text-dark"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="card-title"><span class="lstick"></span>Actividad de tu tienda</h4>
+                        <h6 class="card-subtitle">Muestra los eventos web recibidos</h6>
+        
+                        <div *ngIf="pageViewTotal === 0" class="row animated fadeIn fast">
+                            <div class="col-12">
+                                <div class="alert alert-info text-center">
+                                    <h4 class="alert-heading">Sin Eventos</h4>
+                                    <i class="fas fas fa-sync fa-3x m-1"></i>
+                                    <p class="mb-0">No se recibió actividad durante el período seleccionado.</p>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div *ngIf="pageViewTotal > 0" class="chart-container mb-5">
+                            <ngx-charts-line-chart [scheme]="'vivid'" [results]="resultsChart" [gradient]="gradient"
+                                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel" [showGridLines]="false" [legend]="true"
+                                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                            </ngx-charts-line-chart>
+                        </div>
+        
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Eventos</th>
+                                        <th class="text-center">Eventos Totales</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">
+                                            <span><i class="fas fa-store"></i> Visitas a la Tienda</span>
+                                        </td>
+                                        <td class="text-center">{{pageViewTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <span><i class="fas fa-eye"></i> Ver Contenido</span>
+                                        </td>
+                                        <td class="text-center">{{productViewTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <span><i class="fas fa-shopping-cart"></i> Agregar al Carrito</span>
+                                        </td>
+                                        <td class="text-center">{{addToCartTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row">
+                                            <span><i class="fas fa-shopping-basket"></i> Compras</span>
+                                        </td>
+                                        <td class="text-center">{{purchaseTotal}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><span class="lstick"></span>Top Productos (Visitados)</h4>
+                <h6 class="card-subtitle">Top 10 de los productos más visitados en tu tienda</h6>
+
+    
+                <div *ngIf="productosVisitados.data.length === 0" class="row animated fadeIn fast">
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center">
+                            <h4 class="alert-heading">No hay productos</h4>
+                            <i class="fas fa-heart-broken fa-3x m-1"></i>
+                            <p class="mb-0">Todavia nadie ha visto ningún producto de tu tienda</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div *ngIf="productosVisitados.data.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>--</th>
+                                    <th>Producto</th>
+                                    <th><i class="fas fa-eye"></i> Vistas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let itemProducto of productosVisitados.data; let i = index" class="active">
+    
+                                    <td> <img class="img-cat img-responsive pointer"
+                                            [ngClass]="{'img-filter': !itemProducto.activo}"
+                                            [src]="itemProducto.images[0] | imagen:'productos'"
+                                            alt="itemProducto.images[0]"></td>
+    
+                                    <td>{{ itemProducto.title }}</td>
+                                    <td>{{ itemProducto.clickcount }}</td>
+    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div class="row small">
+                        <div class="col-12 col-md-6">
+                            <div class="dataTables_info m-1" id="example23_info" role="status" aria-live="polite">
+                                Mostrando {{ 10 }} registros de un total de {{ productosVisitados.conteo }}
+                                registros
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><span class="lstick"></span>Top Productos (Comprados)</h4>
+                <h6 class="card-subtitle">Top 10 de los productos más comprados en tu tienda</h6>
+    
+                <div *ngIf="productosComprados.data.length === 0" class="row animated fadeIn fast">
+                    <div class="col-12">
+                        <div class="alert alert-warning text-center">
+                            <h4 class="alert-heading">No hay productos</h4>
+                            <i class="fas fa-heart-broken fa-3x m-1"></i>
+                            <p class="mb-0">Todavia no tienes compras en tu tienda</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div *ngIf="productosComprados.data.length > 0">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>--</th>
+                                    <th>Producto</th>
+                                    <th><i class="fas fa-shopping-basket"></i> Compras</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let itemProducto of productosComprados.data; let i = index" class="active">
+    
+                                    <td> <img class="img-cat img-responsive"
+                                            [ngClass]="{'img-filter': !itemProducto.activo}"
+                                            [src]="itemProducto.images[0] | imagen:'productos'"
+                                            alt="itemProducto.images[0]"></td>
+    
+                                    <td>{{ itemProducto.title }}</td>
+                                    <td>{{ itemProducto.sellcount }}</td>
+    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div class="row small">
+                        <div class="col-12 col-md-6">
+                            <div class="dataTables_info m-1" id="example23_info" role="status" aria-live="polite">
+                                Mostrando {{ 10 }} registros de un total de {{ productosComprados.conteo }}
+                                registros
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12 text-center">
+        <button (click)="goBack()" class="btn btn-sm btn-info"><i class="fas fa-undo"></i> Regresar</button>
+    </div>
+</div>
